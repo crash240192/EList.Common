@@ -1,0 +1,33 @@
+{
+	"contactData": {
+		"contactTypes": {
+			"phone": "телефон",
+			"email": "электронная почта",
+			"someData": "test contact type"
+		}
+	},
+	"events": {
+		"categories": {
+			"defaultName": "default",
+			"music": "Музыка",
+			"sport": "Спорт",
+			"auto": "Авто"
+		},
+		"types": {
+			"defaultName": "default",
+			"jazz": "Джаз",
+			"blues": "Блюз",
+			"rock": "Рок",
+			"pop": "Поп",
+			"punk": "Панк",
+
+			"drift": "Дрифт",
+			"drag": "Драг",
+			"circuitRacing": "Кольцевые",
+			"autoSound": "Автозвук",
+			
+			"skating": "Скейтинг",
+			"bycicleRacing": "Велогонки"
+		}
+	}
+}
