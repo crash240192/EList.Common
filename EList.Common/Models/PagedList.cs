@@ -2,7 +2,7 @@
 {
     public class PagedList<T>
     {
-        private int? total;
+        protected int? total;
         
         public int PageIndex { get; }
         public int PageSize { get; }
