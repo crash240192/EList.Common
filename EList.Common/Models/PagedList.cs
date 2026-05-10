@@ -19,7 +19,7 @@
             }
         }
 
-        public PagedList(int total, List<T> result, int pageIndex, int pageSize)
+        public PagedList(int total, List<T>? result, int pageIndex, int pageSize)
         { 
             Total = total;
             Result = result;
