@@ -69,6 +69,15 @@ namespace EList.Common.Support
         AccountWalletAlreadyExists = 10006,
 
         //organizations
-        OrganizationNotFound = 11001
+        OrganizationNotFound = 11001,
+
+        //participations
+        EventIsFull = 12001,
+
+        //events
+        EventCancelled = 13001,
+
+        //conversations
+        MessageNotFound = 14001
     }
 }
