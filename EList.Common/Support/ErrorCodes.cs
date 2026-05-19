@@ -28,7 +28,7 @@ namespace EList.Common.Support
         NewAndOldPasswordsMatch = 1007,
 
         //accounts
-        DublicaeAccount = 2001,
+        DublicateAccount = 2001,
         AccountNotFound = 2002,
 
         //notifications
@@ -52,6 +52,7 @@ namespace EList.Common.Support
 
         //invitations
         InvitationNotFound = 7000,
+        InvitationForbidden = 7001,
 
         //contacts
         ContactNotFound = 8000,
@@ -78,6 +79,9 @@ namespace EList.Common.Support
         EventCancelled = 13001,
 
         //conversations
-        MessageNotFound = 14001
+        MessageNotFound = 14001,
+
+        //rating
+        RatingItemNotFound = 15001
     }
 }
