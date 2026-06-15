@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EList.Common.Support
+﻿namespace EList.Common.Support
 {
     public enum ErrorCode : int
     {
@@ -16,7 +10,7 @@ namespace EList.Common.Support
         FileNotSpecified = 4,
         InvalidValue = 5,
         AccessError = 6,
-
+        
 
         //authorization
         AuthorizationDataNotFound = 1001,
@@ -26,6 +20,7 @@ namespace EList.Common.Support
         ActivationAttemptsExceed = 1005,
         PasswordsDontMatch = 1006,
         NewAndOldPasswordsMatch = 1007,
+        AuthorizationContactIsNotEmpty = 1008,
 
         //accounts
         DublicateAccount = 2001,
@@ -77,11 +72,17 @@ namespace EList.Common.Support
 
         //events
         EventCancelled = 13001,
+        EventNotExists = 13002,
+        EventAccessDenied = 13003,
 
         //conversations
         MessageNotFound = 14001,
 
         //rating
-        RatingItemNotFound = 15001
+        RatingItemNotFound = 15001,
+
+
+        //ws
+        NoActiveSocketConnections = 16001
     }
 }
