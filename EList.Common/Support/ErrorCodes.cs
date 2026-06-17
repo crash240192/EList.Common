@@ -81,8 +81,10 @@
         //rating
         RatingItemNotFound = 15001,
 
-
         //ws
-        NoActiveSocketConnections = 16001
+        NoActiveSocketConnections = 16001,
+
+        //media
+        AlbumNotFound = 17001
     }
 }
