@@ -85,6 +85,7 @@
         NoActiveSocketConnections = 16001,
 
         //media
-        AlbumNotFound = 17001
+        AlbumNotFound = 17001,
+        AddPhotosNotAllowed = 17002
     }
 }
