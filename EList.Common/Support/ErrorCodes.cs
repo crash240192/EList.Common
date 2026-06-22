@@ -77,6 +77,7 @@
 
         //conversations
         MessageNotFound = 14001,
+        MessageReplied = 14002,
 
         //rating
         RatingItemNotFound = 15001,
@@ -86,6 +87,7 @@
 
         //media
         AlbumNotFound = 17001,
-        AddPhotosNotAllowed = 17002
+        AddPhotosNotAllowed = 17002,
+        AlbumItemNotFound = 17003
     }
 }

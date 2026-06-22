@@ -6,6 +6,7 @@ using EList.Common.Models;
 using Newtonsoft.Json;
 using NLog;
 using System.Diagnostics;
+using FileInfo = EList.FilestorageClient.Models.FileInfo;
 
 namespace EList.FilestorageClient
 {
@@ -73,6 +74,50 @@ namespace EList.FilestorageClient
             };
             var body = JsonConvert.SerializeObject(request);
             var response = await client.PostAsync<CommandResult>("api/tokenRegistration/disable", body, _timeout);
+
+            if (!response.Success)
+                logger.Warn(correlationId, null, methodName, $"{response.Message}", null);
+
+            logger.Debug(correlationId, null, methodName, $"Method finished", null);
+            return response;
+        }
+
+        public async Task<CommandResult<FileInfo>> GetFileInfoAsync(Guid id, Guid userToken, string jwt)
+        {
+            var correlationId = _correlationIdProvider.Get();
+            var execTime = Stopwatch.StartNew();
+            var methodName = $"{LOGGER_NAME}{nameof(GetFileInfoAsync)}";
+            logger.Debug(correlationId, null, methodName, $"Method started", null);
+
+            var client = new HttpRestClient2(_correlationIdProvider.Get(), _baseUrl, _token);
+            var headers = new Dictionary<string, string>()
+            {
+                { "Authorization", userToken.ToString() },
+                { "Authorization-jwt", jwt }
+            };
+            var response = await client.GetAsync<CommandResult<FileInfo>>($"api/info/{id}", headers, _timeout);
+
+            if (!response.Success)
+                logger.Warn(correlationId, null, methodName, $"{response.Message}", null);
+
+            logger.Debug(correlationId, null, methodName, $"Method finished", null);
+            return response;
+        }
+
+        public async Task<CommandResult> DeleteFileAsync(Guid id, Guid userToken, string jwt)
+        {
+            var correlationId = _correlationIdProvider.Get();
+            var execTime = Stopwatch.StartNew();
+            var methodName = $"{LOGGER_NAME}{nameof(DeleteFileAsync)}";
+            logger.Debug(correlationId, null, methodName, $"Method started", null);
+
+            var client = new HttpRestClient2(_correlationIdProvider.Get(), _baseUrl, _token);
+            var headers = new Dictionary<string, string>()
+            {
+                { "Authorization", userToken.ToString() },
+                { "Authorization-jwt", jwt }
+            };
+            var response = await client.DeleteAsync<CommandResult>($"api/delete/{id}", headers, _timeout);
 
             if (!response.Success)
                 logger.Warn(correlationId, null, methodName, $"{response.Message}", null);
