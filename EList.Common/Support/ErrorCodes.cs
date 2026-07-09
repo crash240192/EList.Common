@@ -21,6 +21,7 @@
         PasswordsDontMatch = 1006,
         NewAndOldPasswordsMatch = 1007,
         AuthorizationContactIsNotEmpty = 1008,
+        TokenNotFound = 1009,
 
         //accounts
         DublicateAccount = 2001,

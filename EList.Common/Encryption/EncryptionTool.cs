@@ -14,9 +14,9 @@ namespace EList.Common.Encryption
                 salt = string.Empty;
         }
 
-        public string CalculateStringHash(string password)
+        public string CalculateStringHash(string value)
         {
-            var hash = EncryptionUtility.EncryptMD5(password);
+            var hash = EncryptionUtility.EncryptMD5(value);
 
             if (!string.IsNullOrWhiteSpace(salt))
                 hash = EncryptionUtility.EncryptMD5(hash + salt);
