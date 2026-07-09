@@ -23,9 +23,10 @@
         AuthorizationContactIsNotEmpty = 1008,
         TokenNotFound = 1009,
 
-        //accounts
+        //accounts        
         DublicateAccount = 2001,
         AccountNotFound = 2002,
+        RegistrationForbiden = 2003,
 
         //notifications
         UserHasNoNecessaryContacts = 3001,
