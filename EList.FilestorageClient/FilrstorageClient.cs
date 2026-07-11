@@ -92,7 +92,6 @@ namespace EList.FilestorageClient
             var client = new HttpRestClient2(_correlationIdProvider.Get(), _baseUrl, _token);
             var headers = new Dictionary<string, string>()
             {
-                { "Authorization", userToken.ToString() },
                 { "Authorization-jwt", jwt }
             };
             var response = await client.GetAsync<CommandResult<FileInfo>>($"api/info/{id}", headers, _timeout);
@@ -114,7 +113,6 @@ namespace EList.FilestorageClient
             var client = new HttpRestClient2(_correlationIdProvider.Get(), _baseUrl, _token);
             var headers = new Dictionary<string, string>()
             {
-                { "Authorization", userToken.ToString() },
                 { "Authorization-jwt", jwt }
             };
             var response = await client.DeleteAsync<CommandResult>($"api/delete/{id}", headers, _timeout);
