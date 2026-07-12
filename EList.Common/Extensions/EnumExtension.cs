@@ -39,5 +39,10 @@ namespace EList.Common.Extensions
             var attributes = memInfo[0].GetCustomAttributes(typeof(T), false);
             return attributes.Length > 0 ? (T)attributes[0] : null;
         }
+
+        public static bool IsDefinedValue<T>(int value) where T : Enum
+        {
+            return Enum.IsDefined(typeof(T), value);
+        }
     }
 }

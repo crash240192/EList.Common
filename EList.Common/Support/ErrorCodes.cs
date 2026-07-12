@@ -76,6 +76,7 @@
         EventCancelled = 13001,
         EventNotExists = 13002,
         EventAccessDenied = 13003,
+        InvalidAgeLimitValue = 13004,
 
         //conversations
         MessageNotFound = 14001,
