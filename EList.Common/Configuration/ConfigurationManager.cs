@@ -13,14 +13,18 @@ namespace EList.Common.Configuration
             try
             {
                 var builder = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json");
+                    .SetBasePath(Directory.GetCurrentDirectory());
+
+                if (File.Exists("appsettings.Production.json"))
+                    builder = builder.AddJsonFile("appsettings.Production.json");
+                else
+                    builder = builder.AddJsonFile("appsettings.json");
 
                 AppSettings = new AppSettingsContainer(builder.Build());
             }
             catch (Exception ex)
             {
-                throw new ApplicationException("Unable to read appsettings.json file", ex);
+                throw new ApplicationException("Unable to read appsettings file", ex);
             }
         }
     }
