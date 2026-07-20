@@ -91,6 +91,14 @@
         //media
         AlbumNotFound = 17001,
         AddPhotosNotAllowed = 17002,
-        AlbumItemNotFound = 17003
+        AlbumItemNotFound = 17003,
+
+        //agreement
+        AgreementNotFound = 18001,
+        UserMustBeAuthorized = 18002,
+        AgreementDocumentNotFound = 18003,
+        DocumentHeaderIsEmpty = 18004,
+        DocumentIsEmpty = 18005,
+        InvalidVersion = 18006
     }
 }
