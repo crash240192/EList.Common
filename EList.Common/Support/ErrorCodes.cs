@@ -68,6 +68,12 @@
 
         //organizations
         OrganizationNotFound = 11001,
+        OrganizationMemberAlreadyExists = 11002, 
+        OrganizationMemberNotFound = 11003,
+        OrganizationLegalDataRequired = 11004,
+        OrganizationPayoutDataRequired = 11005, 
+        OrganizationPaymentRequired = 11006,
+        OrganizationNotVerified = 11007,
 
         //participations
         EventIsFull = 12001,
