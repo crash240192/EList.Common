@@ -46,6 +46,7 @@
         EventCategoryNotFound = 6001,
         EventNotFound = 6002,
         EventParametersNotFound = 6003,
+        EventTemplateNotFound = 6004,
 
         //invitations
         InvitationNotFound = 7000,
