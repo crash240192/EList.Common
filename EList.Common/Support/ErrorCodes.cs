@@ -10,7 +10,7 @@
         FileNotSpecified = 4,
         InvalidValue = 5,
         AccessError = 6,
-        
+
 
         //authorization
         AuthorizationDataNotFound = 1001,
@@ -69,10 +69,10 @@
 
         //organizations
         OrganizationNotFound = 11001,
-        OrganizationMemberAlreadyExists = 11002, 
+        OrganizationMemberAlreadyExists = 11002,
         OrganizationMemberNotFound = 11003,
         OrganizationLegalDataRequired = 11004,
-        OrganizationPayoutDataRequired = 11005, 
+        OrganizationPayoutDataRequired = 11005,
         OrganizationPaymentRequired = 11006,
         OrganizationNotVerified = 11007,
 
@@ -115,11 +115,15 @@
         //roles
         PlatformRoleNotFound = 20001,
 
-        //use reports
+        //content reports
         ReportReasonNotFound = 21001,
         ContentReportNotFound = 21002,
         ContentReportAlreadyExists = 21003,
+        ContentReportNotInReview = 21004,
 
-
+        // penalties
+        EventNotCancelledByModeration = 22001,
+        ModerationPenaltyActive = 22002,
+        ModerationPenaltyNotFound = 22003
     }
 }
