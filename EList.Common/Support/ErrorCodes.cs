@@ -112,18 +112,14 @@
         BugReportNotFound = 19001,
         BugReportCategoryNotFound = 19002,
 
-        //roles
-        PlatformRoleNotFound = 20001,
-
-        //content reports
-        ReportReasonNotFound = 21001,
-        ContentReportNotFound = 21002,
-        ContentReportAlreadyExists = 21003,
-        ContentReportNotInReview = 21004,
-
-        // penalties
-        EventNotCancelledByModeration = 22001,
-        ModerationPenaltyActive = 22002,
-        ModerationPenaltyNotFound = 22003
+        //content moderation
+        ReportReasonNotFound = 20001,
+        ContentReportNotFound = 20002,
+        ContentReportAlreadyExists = 20003,
+        PlatformRoleNotFound = 20004,
+        ContentReportNotInReview = 20005,
+        ModerationPenaltyActive = 20006,
+        EventNotCancelledByModeration = 20007,
+        ModerationPenaltyNotFound = 20008
     }
 }
