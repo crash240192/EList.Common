@@ -106,6 +106,20 @@
         AgreementDocumentNotFound = 18003,
         DocumentHeaderIsEmpty = 18004,
         DocumentIsEmpty = 18005,
-        InvalidVersion = 18006
+        InvalidVersion = 18006,
+
+        //bugreports
+        BugReportNotFound = 19001,
+        BugReportCategoryNotFound = 19002,
+
+        //roles
+        PlatformRoleNotFound = 20001,
+
+        //use reports
+        ReportReasonNotFound = 21001,
+        ContentReportNotFound = 21002,
+        ContentReportAlreadyExists = 21003,
+
+
     }
 }
