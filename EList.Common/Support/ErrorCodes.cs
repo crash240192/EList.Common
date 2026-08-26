@@ -84,6 +84,9 @@
         EventNotExists = 13002,
         EventAccessDenied = 13003,
         InvalidAgeLimitValue = 13004,
+        EventCreationRateLimited = 13005,
+        EventQuotaExceeded = 13006,
+        EventGeoSpamDetected = 13007,
 
         //conversations
         MessageNotFound = 14001,
