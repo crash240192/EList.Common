@@ -4,11 +4,11 @@ namespace EList.Common.Configuration
 {
     public class AppSettingsContainer
     {
-        private IConfigurationRoot AppSettings { get; set; }
+        private IConfiguration AppSettings { get; set; }
 
-        public AppSettingsContainer(IConfigurationRoot appSettings)
+        public AppSettingsContainer(IConfiguration appSettings)
         {
-            AppSettings = appSettings;
+            AppSettings = appSettings ?? throw new ArgumentNullException(nameof(appSettings));
         }
 
         public string this[string key]
