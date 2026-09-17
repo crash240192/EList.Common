@@ -123,5 +123,29 @@ namespace EList.FilestorageClient
             logger.Debug(correlationId, null, methodName, $"Method finished", null);
             return response;
         }
+
+        public async Task<CommandResult> SetFilesVisibilityAsync(IReadOnlyList<Guid> fileIds, FileVisibility visibility)
+        {
+            var correlationId = _correlationIdProvider.Get();
+            var methodName = $"{LOGGER_NAME}{nameof(SetFilesVisibilityAsync)}";
+            logger.Debug(correlationId, null, methodName, $"Method started", null);
+
+            if (fileIds == null || fileIds.Count == 0)
+                return CommandResult.OK;
+
+            var client = new HttpRestClient2(_correlationIdProvider.Get(), _baseUrl, _token);
+            var body = JsonConvert.SerializeObject(new SetFilesVisibilityRequest
+            {
+                FileIds = fileIds.Where(id => id != Guid.Empty).Distinct().ToList(),
+                Visibility = visibility
+            });
+            var response = await client.PostAsync<CommandResult>("api/setVisibility", body, _timeout);
+
+            if (!response.Success)
+                logger.Warn(correlationId, null, methodName, $"{response.Message}", null);
+
+            logger.Debug(correlationId, null, methodName, $"Method finished", null);
+            return response;
+        }
     }
 }

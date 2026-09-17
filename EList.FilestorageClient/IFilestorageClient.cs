@@ -9,5 +9,6 @@ namespace EList.FilestorageClient
         Task<CommandResult> DisableAuthDataAsync(Guid userToken, string JwtHash);
         Task<CommandResult<FileInfo>> GetFileInfoAsync(Guid id, Guid userToken, string jwt);
         Task<CommandResult> DeleteFileAsync(Guid id, Guid userToken, string jwt);
+        Task<CommandResult> SetFilesVisibilityAsync(IReadOnlyList<Guid> fileIds, FileVisibility visibility);
     }
 }
