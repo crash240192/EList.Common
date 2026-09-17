@@ -139,7 +139,7 @@ namespace EList.FilestorageClient
                 FileIds = fileIds.Where(id => id != Guid.Empty).Distinct().ToList(),
                 Visibility = visibility
             });
-            var response = await client.PostAsync<CommandResult>("api/setVisibility", body, _timeout);
+            var response = await client.PostAsync<CommandResult>("api/internal/setVisibility", body, _timeout);
 
             if (!response.Success)
                 logger.Warn(correlationId, null, methodName, $"{response.Message}", null);
@@ -163,7 +163,7 @@ namespace EList.FilestorageClient
                 FileIds = fileIds.Where(id => id != Guid.Empty).Distinct().ToList(),
                 AccessStatus = accessStatus
             });
-            var response = await client.PostAsync<CommandResult>("api/setAccessStatus", body, _timeout);
+            var response = await client.PostAsync<CommandResult>("api/internal/setAccessStatus", body, _timeout);
 
             if (!response.Success)
                 logger.Warn(correlationId, null, methodName, $"{response.Message}", null);

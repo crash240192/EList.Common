@@ -216,6 +216,32 @@ namespace EList.Common.Support
             return mimeType.StartsWith("video/");
         }
 
+        /// <summary>
+        /// Strict upload allow-list (magic-byte MIME). Broader image/* or video/* is not enough.
+        /// </summary>
+        public static readonly HashSet<string> AllowedUploadMimeTypes = new(StringComparer.OrdinalIgnoreCase)
+        {
+            "image/jpeg",
+            "image/png",
+            "image/gif",
+            "image/webp",
+            "image/heic",
+            "image/heif",
+            "video/mp4",
+            "video/quicktime",
+            "video/webm",
+            "video/x-m4v",
+            // EBML container; detector often returns matroska for WebM as well
+            "video/x-matroska"
+        };
+
+        public static bool IsAllowedUploadMime(string mimeType)
+        {
+            if (string.IsNullOrWhiteSpace(mimeType))
+                return false;
+            return AllowedUploadMimeTypes.Contains(mimeType.Trim());
+        }
+
         public static string GetCategory(string mimeType)
         {
             if (IsImage(mimeType)) return "image";
