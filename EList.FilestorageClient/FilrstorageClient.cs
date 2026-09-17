@@ -219,6 +219,40 @@ namespace EList.FilestorageClient
             }
         }
 
+        public async Task<CommandResult<List<Guid>>> GetGcCandidateIdsAsync(int olderThanDays = 7, int take = 100)
+        {
+            var correlationId = _correlationIdProvider.Get();
+            var methodName = $"{LOGGER_NAME}{nameof(GetGcCandidateIdsAsync)}";
+            logger.Debug(correlationId, null, methodName, $"Method started", null);
+
+            var client = new HttpRestClient2(_correlationIdProvider.Get(), _baseUrl, _token);
+            var response = await client.GetAsync<CommandResult<List<Guid>>>(
+                $"api/internal/gc/candidates?olderThanDays={olderThanDays}&take={take}",
+                timeout: _timeout);
+
+            if (!response.Success)
+                logger.Warn(correlationId, null, methodName, $"{response.Message}", null);
+
+            logger.Debug(correlationId, null, methodName, $"Method finished", null);
+            return response;
+        }
+
+        public async Task<CommandResult> DeleteFileAsServiceAsync(Guid id)
+        {
+            var correlationId = _correlationIdProvider.Get();
+            var methodName = $"{LOGGER_NAME}{nameof(DeleteFileAsServiceAsync)}";
+            logger.Debug(correlationId, null, methodName, $"Method started", null);
+
+            var client = new HttpRestClient2(_correlationIdProvider.Get(), _baseUrl, _token);
+            var response = await client.DeleteAsync<CommandResult>($"api/delete/{id}", timeout: _timeout);
+
+            if (!response.Success)
+                logger.Warn(correlationId, null, methodName, $"{response.Message}", null);
+
+            logger.Debug(correlationId, null, methodName, $"Method finished", null);
+            return response;
+        }
+
         /// <summary>
         /// Dedicated client for binary download (shared JSON Accept header would break image responses).
         /// </summary>

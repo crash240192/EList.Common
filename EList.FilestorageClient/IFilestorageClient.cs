@@ -15,6 +15,9 @@ namespace EList.FilestorageClient
         /// Download file bytes via service-token (works for Blocked files; for staff proxy).
         /// </summary>
         Task<CommandResult<FileDownloadResult>> DownloadFileAsync(Guid fileId, bool? fullSize = null);
+        Task<CommandResult<List<Guid>>> GetGcCandidateIdsAsync(int olderThanDays = 7, int take = 100);
+        /// <summary>Delete via service-token only (orphan GC / internal cleanup).</summary>
+        Task<CommandResult> DeleteFileAsServiceAsync(Guid id);
     }
 }
 
