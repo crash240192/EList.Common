@@ -147,5 +147,91 @@ namespace EList.FilestorageClient
             logger.Debug(correlationId, null, methodName, $"Method finished", null);
             return response;
         }
+
+        public async Task<CommandResult> SetFilesAccessStatusAsync(IReadOnlyList<Guid> fileIds, FileAccessStatus accessStatus)
+        {
+            var correlationId = _correlationIdProvider.Get();
+            var methodName = $"{LOGGER_NAME}{nameof(SetFilesAccessStatusAsync)}";
+            logger.Debug(correlationId, null, methodName, $"Method started", null);
+
+            if (fileIds == null || fileIds.Count == 0)
+                return CommandResult.OK;
+
+            var client = new HttpRestClient2(_correlationIdProvider.Get(), _baseUrl, _token);
+            var body = JsonConvert.SerializeObject(new SetFilesAccessStatusRequest
+            {
+                FileIds = fileIds.Where(id => id != Guid.Empty).Distinct().ToList(),
+                AccessStatus = accessStatus
+            });
+            var response = await client.PostAsync<CommandResult>("api/setAccessStatus", body, _timeout);
+
+            if (!response.Success)
+                logger.Warn(correlationId, null, methodName, $"{response.Message}", null);
+
+            logger.Debug(correlationId, null, methodName, $"Method finished", null);
+            return response;
+        }
+
+        public async Task<CommandResult<FileDownloadResult>> DownloadFileAsync(Guid fileId, bool? fullSize = null)
+        {
+            var correlationId = _correlationIdProvider.Get();
+            var methodName = $"{LOGGER_NAME}{nameof(DownloadFileAsync)}";
+            logger.Debug(correlationId, null, methodName, $"Method started", null);
+
+            try
+            {
+                var url = $"{_baseUrl.TrimEnd('/')}/api/download/{fileId}";
+                using var request = new HttpRequestMessage(HttpMethod.Get, url);
+                request.Headers.TryAddWithoutValidation("Authorization", _token);
+                request.Headers.TryAddWithoutValidation("CorrelationId", correlationId);
+                if (fullSize != null)
+                    request.Headers.TryAddWithoutValidation("FullSize", fullSize.Value ? "true" : "false");
+
+                using var cts = _timeout != null
+                    ? new CancellationTokenSource(_timeout.Value)
+                    : new CancellationTokenSource();
+
+                using var response = await SharedHttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cts.Token);
+                if (!response.IsSuccessStatusCode)
+                {
+                    var msg = $"Download failed: {(int)response.StatusCode} {response.ReasonPhrase}";
+                    logger.Warn(correlationId, null, methodName, msg, null);
+                    return CommandResult<FileDownloadResult>.Fail(1, msg);
+                }
+
+                var bytes = await response.Content.ReadAsByteArrayAsync(cts.Token);
+                var contentType = response.Content.Headers.ContentType?.ToString() ?? "application/octet-stream";
+                var fileName = response.Content.Headers.ContentDisposition?.FileName?.Trim('"')
+                    ?? fileId.ToString();
+
+                logger.Debug(correlationId, null, methodName, $"Method finished", null);
+                return new CommandResult<FileDownloadResult>(new FileDownloadResult
+                {
+                    Content = bytes,
+                    ContentType = contentType,
+                    FileName = fileName
+                });
+            }
+            catch (Exception ex)
+            {
+                logger.Warn(correlationId, null, methodName, $"{ex.Message}", null);
+                return CommandResult<FileDownloadResult>.Fail(1, ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Dedicated client for binary download (shared JSON Accept header would break image responses).
+        /// </summary>
+        private static readonly HttpClient SharedHttpClient = CreateDownloadHttpClient();
+
+        private static HttpClient CreateDownloadHttpClient()
+        {
+            var handler = new SocketsHttpHandler
+            {
+                AllowAutoRedirect = false
+            };
+            handler.SslOptions.RemoteCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+            return new HttpClient(handler, false);
+        }
     }
 }
