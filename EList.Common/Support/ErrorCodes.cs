@@ -36,6 +36,8 @@
         PersonNotExists = 4000,
         InvalidFirstName = 4001,
         InvalidLastName = 4002,
+        /// <summary>Регистрация / профиль: возраст меньше минимально допустимого (14 лет).</summary>
+        UserUnderMinimumAge = 4003,
 
         //subscriptions
         SubscriptionAlreadyExists = 5000,
