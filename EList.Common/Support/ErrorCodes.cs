@@ -68,6 +68,8 @@
         TariffNotAssigned = 10004,
         PaymentValueMustBeOverZero = 10005,
         AccountWalletAlreadyExists = 10006,
+        /// <summary>В контуре (личный / организация) уже есть тариф со стоимостью 0.</summary>
+        DefaultFreeTariffAlreadyExists = 10007,
 
         //organizations
         OrganizationNotFound = 11001,
