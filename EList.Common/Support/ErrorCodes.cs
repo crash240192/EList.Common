@@ -36,6 +36,8 @@
         PersonNotExists = 4000,
         InvalidFirstName = 4001,
         InvalidLastName = 4002,
+        /// <summary>Возраст меньше минимально допустимого для сервиса (14 лет).</summary>
+        UserUnderMinimumAge = 4003,
 
         //subscriptions
         SubscriptionAlreadyExists = 5000,
@@ -66,6 +68,8 @@
         TariffNotAssigned = 10004,
         PaymentValueMustBeOverZero = 10005,
         AccountWalletAlreadyExists = 10006,
+        /// <summary>В контуре (личный / организация) уже есть тариф со стоимостью 0.</summary>
+        DefaultFreeTariffAlreadyExists = 10007,
 
         //organizations
         OrganizationNotFound = 11001,
