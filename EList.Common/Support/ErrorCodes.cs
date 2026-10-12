@@ -114,6 +114,10 @@
         DocumentHeaderIsEmpty = 18004,
         DocumentIsEmpty = 18005,
         InvalidVersion = 18006,
+        /// <summary>
+        /// Нет согласия на распространение ПДн — нельзя открывать персональные данные другим.
+        /// </summary>
+        DistributionConsentRequired = 18007,
 
         //bugreports
         BugReportNotFound = 19001,
