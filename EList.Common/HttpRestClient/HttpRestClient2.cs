@@ -15,7 +15,6 @@ namespace EList.Common.HttpRestClient
         #region NLog
         private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
         private static readonly ILoggerWrapper logger = new NLogLoggerWrapper(Log);
-        //private const string LOGGER_NAME = "N3.Common.Net.HttpRestClient.";
         #endregion
 
         #region private const
