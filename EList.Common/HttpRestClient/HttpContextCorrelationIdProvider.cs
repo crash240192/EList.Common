@@ -1,4 +1,5 @@
 ﻿using EList.Common.CorrelationId;
+using EList.Common.Logger;
 using Microsoft.AspNetCore.Http;
 
 namespace EList.Common.HttpRestClient
