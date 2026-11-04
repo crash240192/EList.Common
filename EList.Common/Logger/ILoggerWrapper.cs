@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using EList.Common.Logger;
-using EList.Common.Logger.Containers;
+﻿using EList.Common.Logger.Containers;
 using EList.Common.Logger.Enums;
 using Microsoft.AspNetCore.Http;
 
@@ -107,6 +104,8 @@ namespace EList.Common.Logger
             string? clientIP = null,
             IDictionary<string, object>? meta = null,
             string? incomingMessage = null);
+
+        bool IsEnabled(LogLevel level);
 
         #region Logs with requestId
         void Write(

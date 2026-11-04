@@ -21,6 +21,11 @@ namespace EList.Common.Logger
             this.httpContextAccessor = httpContextAccessor;
         }
 
+        public bool IsEnabled(Enums.LogLevel level)
+        {
+            return logger.IsEnabled(LogLevel.FromString(level.ToString()));
+        }
+
         public void Write(
             Enums.LogLevel level,
             string? correlationId,
