@@ -27,6 +27,10 @@
         DublicateAccount = 2001,
         AccountNotFound = 2002,
         RegistrationForbiden = 2003,
+        /// <summary>Аккаунт ещё не подтвердил auth-контакт (PendingActivation).</summary>
+        AccountPendingActivation = 2004,
+        /// <summary>Окно PendingActivation истекло (expires_at).</summary>
+        AccountPendingExpired = 2005,
 
         //notifications
         UserHasNoNecessaryContacts = 3001,
